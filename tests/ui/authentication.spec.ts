@@ -3,6 +3,7 @@ import { LoginPage } from '../../pages/LoginPage';
 import { SignupPage } from '../../pages/SignupPage';
 import { acceptConsentIfVisible } from '../../utils/consent';
 
+
 test.describe('Authentication', () => {
 
   test.describe.configure({
@@ -98,6 +99,7 @@ test('AUTH-001 - Register a new user successfully', async ({ page }) => {
    * CREATE ACCOUNT
    */
 
+  await acceptConsentIfVisible(page);
   await signupPage.createAccountButton.click();
 
   /*

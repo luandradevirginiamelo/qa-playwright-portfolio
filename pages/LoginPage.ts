@@ -11,6 +11,7 @@ export class LoginPage {
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
   readonly loginHeading: Locator;
+  
 
   constructor(page: Page) {
     this.page = page;

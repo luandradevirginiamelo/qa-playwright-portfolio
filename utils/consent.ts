@@ -1,6 +1,7 @@
+
 import { Page } from '@playwright/test';
 
-export async function acceptConsentIfVisible(page: Page) {
+export async function acceptConsentIfVisible(page: Page): Promise<void> {
   const consentDialog = page.getByRole('dialog', {
     name: 'This site asks for consent to use your data'
   });
@@ -21,10 +22,19 @@ export async function acceptConsentIfVisible(page: Page) {
   if (dialogAppeared) {
     await consentButton.click();
 
-    // Make sure the overlay is actually gone before continuing.
     await consentDialog.waitFor({
       state: 'hidden',
-      timeout: 5000
+      timeout: 10000
+    });
+  }
+
+  // Ensure the consent overlay is no longer blocking interactions.
+  const consentOverlay = page.locator('.fc-dialog-overlay');
+
+  if (await consentOverlay.isVisible()) {
+    await consentOverlay.waitFor({
+      state: 'hidden',
+      timeout: 10000
     });
   }
 }

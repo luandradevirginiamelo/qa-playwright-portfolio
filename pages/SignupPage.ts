@@ -1,4 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { acceptConsentIfVisible } from '../utils/consent';
 
 export class SignupPage {
 
@@ -133,6 +134,8 @@ export class SignupPage {
     await this.zipcodeInput.fill('M5V2T6');
     await this.mobileNumberInput.fill('1234567890');
 
+    await acceptConsentIfVisible(this.page);
+    
     await this.createAccountButton.click();
 
     await expect(
