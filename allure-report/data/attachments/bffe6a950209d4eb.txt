@@ -1,0 +1,7 @@
+Card number validation: {
+  required: true,
+  type: 'text',
+  pattern: '',
+  valid: true,
+  patternMismatch: false
+}
