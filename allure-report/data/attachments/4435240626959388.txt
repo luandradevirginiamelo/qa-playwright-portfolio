@@ -1,0 +1,7 @@
+
+=== API-012 RESPONSE ===
+HTTP Status: 200
+Response Body: {
+  "responseCode": 200,
+  "message": "Account deleted!"
+}

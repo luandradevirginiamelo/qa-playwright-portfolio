@@ -1,0 +1,17 @@
+
+=== API-001 RESPONSE ===
+HTTP Status: 200
+Response Code: 200
+Total Products: 34
+First Product: {
+  "id": 1,
+  "name": "Blue Top",
+  "price": "Rs. 500",
+  "brand": "Polo",
+  "category": {
+    "usertype": {
+      "usertype": "Women"
+    },
+    "category": "Tops"
+  }
+}

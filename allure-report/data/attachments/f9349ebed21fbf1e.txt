@@ -1,0 +1,30 @@
+
+=== API-014 RESPONSE ===
+HTTP Status: 200
+Response Body: {
+  "responseCode": 200,
+  "user": {
+    "id": 3086835,
+    "name": "API Details Test User",
+    "email": "api.details.1792523404857@example.com",
+    "title": "Mrs",
+    "birth_day": "10",
+    "birth_month": "5",
+    "birth_year": "1990",
+    "first_name": "API",
+    "last_name": "Tester",
+    "company": "QA Portfolio",
+    "address1": "1 Test Street",
+    "address2": "Apartment 2",
+    "country": "Canada",
+    "state": "Ontario",
+    "city": "Toronto",
+    "zipcode": "M5V2T6"
+  }
+}
+
+=== API-014 CLEANUP ===
+Response Body: {
+  "responseCode": 200,
+  "message": "Account deleted!"
+}

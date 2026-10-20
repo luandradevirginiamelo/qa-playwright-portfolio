@@ -1,0 +1,7 @@
+
+=== API-002 RESPONSE ===
+HTTP Status: 200
+Response Body: {
+  "responseCode": 405,
+  "message": "This request method is not supported."
+}

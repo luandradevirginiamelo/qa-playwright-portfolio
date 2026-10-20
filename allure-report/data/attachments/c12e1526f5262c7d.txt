@@ -1,0 +1,7 @@
+
+=== API-006 RESPONSE ===
+HTTP Status: 200
+Response Body: {
+  "responseCode": 400,
+  "message": "Bad request, search_product parameter is missing in POST request."
+}

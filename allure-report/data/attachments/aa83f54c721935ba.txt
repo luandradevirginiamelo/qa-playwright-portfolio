@@ -1,0 +1,7 @@
+
+=== API-010 RESPONSE ===
+HTTP Status: 200
+Response Body: {
+  "responseCode": 404,
+  "message": "User not found!"
+}

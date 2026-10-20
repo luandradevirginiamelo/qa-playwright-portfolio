@@ -1,0 +1,13 @@
+
+=== API-007 RESPONSE ===
+HTTP Status: 200
+Response Body: {
+  "responseCode": 200,
+  "message": "User exists!"
+}
+
+=== API-007 CLEANUP ===
+Response Body: {
+  "responseCode": 200,
+  "message": "Account deleted!"
+}
