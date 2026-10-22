@@ -2777,4 +2777,23 @@ footer p {
 
         gap: 15px;
     }
+
+    
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.project-button-outline {
+    background: transparent;
+    color: #5269f8;
+}
+
+.project-button-outline:hover {
+    background: #eef0ff;
+    color: #4055df;
+}
+
 }
