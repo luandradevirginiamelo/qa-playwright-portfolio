@@ -4,65 +4,91 @@ import { test, expect } from '@playwright/test';
 test.describe('Authentication API', () => {
 
 
+
 test('API-007 - Verify login with valid credentials', async ({ request }) => {
-  // ARRANGE - Generate unique credentials
+  // ARRANGE - Generate unique test credentials
   const email = `api.login.${Date.now()}@example.com`;
   const password = 'TestPassword123!';
+  let accountCreated = false;
 
-  // Create a test account before verifying login
-  const createResponse = await request.post(
-    'https://automationexercise.com/api/createAccount',
-    {
-      form: {
-        name: 'API Login Test User',
-        email: email,
-        password: password,
-        title: 'Mrs',
-        birth_date: '10',
-        birth_month: '5',
-        birth_year: '1990',
-        firstname: 'API',
-        lastname: 'Tester',
-        company: 'QA Portfolio',
-        address1: '1 Test Street',
-        country: 'Canada',
-        zipcode: 'M5V2T6',
-        state: 'Ontario',
-        city: 'Toronto',
-        mobile_number: '1234567890'
+  try {
+    // Create a test account
+    const createResponse = await request.post(
+      'https://automationexercise.com/api/createAccount',
+      {
+        form: {
+          name: 'API Login Test User',
+          email,
+          password,
+          title: 'Mrs',
+          birth_date: '10',
+          birth_month: '5',
+          birth_year: '1990',
+          firstname: 'API',
+          lastname: 'Tester',
+          company: 'QA Portfolio',
+          address1: '1 Test Street',
+          country: 'Canada',
+          zipcode: 'M5V2T6',
+          state: 'Ontario',
+          city: 'Toronto',
+          mobile_number: '1234567890'
+        }
       }
-    }
-  );
+    );
 
-  const createBody = await createResponse.json();
+    const createBody = await createResponse.json();
+    accountCreated = createBody.responseCode === 201;
 
-  // Verify that the account was created successfully
-  expect(createBody.responseCode).toBe(201);
+    expect(createBody.responseCode).toBe(201);
 
-  // ACT - Verify login using the newly created account
-  const response = await request.post(
-    'https://automationexercise.com/api/verifyLogin',
-    {
-      form: {
-        email: email,
-        password: password
+    // ACT - Verify login with valid credentials
+    const response = await request.post(
+      'https://automationexercise.com/api/verifyLogin',
+      {
+        form: {
+          email,
+          password
+        }
       }
+    );
+
+    const body = await response.json();
+
+    // LOG - Display the API response
+    console.log('\n=== API-007 RESPONSE ===');
+    console.log('HTTP Status:', response.status());
+    console.log('Response Body:', JSON.stringify(body, null, 2));
+
+    // ASSERT - Validate successful login
+    expect(response.status()).toBe(200);
+    expect(body.responseCode).toBe(200);
+    expect(body.message).toBe('User exists!');
+
+  } finally {
+    // CLEANUP - Delete the test account
+    if (accountCreated) {
+      const deleteResponse = await request.delete(
+        'https://automationexercise.com/api/deleteAccount',
+        {
+          form: {
+            email,
+            password
+          }
+        }
+      );
+
+      const deleteBody = await deleteResponse.json();
+
+      console.log('\n=== API-007 CLEANUP ===');
+      console.log('Response Body:', JSON.stringify(deleteBody, null, 2));
+
+      expect(deleteBody.responseCode).toBe(200);
+      expect(deleteBody.message).toBe('Account deleted!');
     }
-  );
-
-  // Parse the JSON response
-  const body = await response.json();
-
-  // LOG - Display the API response in the terminal
-  console.log('\n=== API-007 RESPONSE ===');
-  console.log('HTTP Status:', response.status());
-  console.log('Response Body:', JSON.stringify(body, null, 2));
-
-  // ASSERT - Validate successful login
-  expect(response.status()).toBe(200);
-  expect(body.responseCode).toBe(200);
-  expect(body.message).toBe('User exists!');
+  }
 });
+
 
 
   

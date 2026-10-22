@@ -1720,22 +1720,42 @@ button {
     color: var(--blue);
 }
 
+
 .project-button {
     display: inline-flex;
-
     align-items: center;
-
+    justify-content: center;
     gap: 10px;
 
-    padding-bottom: 5px;
+    padding: 14px 22px;
+    border: 1px solid #5269f8;
+    border-radius: 10px;
 
-    border-bottom: 1px solid var(--dark);
+    background: #5269f8;
+    color: #ffffff;
 
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     font-weight: 700;
+    text-decoration: none;
 
-    color: var(--dark);
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
+
+.project-button:hover {
+    background: #4055df;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(82, 105, 248, 0.22);
+}
+
+.project-button i {
+    font-size: 0.9rem;
+}
+
 
 
 /* =========================================================

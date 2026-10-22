@@ -25,6 +25,7 @@ export default defineConfig({
   reporter: [
   ['list'],
   ['html', { open: 'never' }],
+  ['allure-playwright', { resultsDir: 'allure-results' }],
 ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
