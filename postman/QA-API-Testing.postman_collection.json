@@ -1,0 +1,245 @@
+{
+  "info": {
+    "_postman_id": "351ad6a7-4c9e-4ce2-8e1c-e9e2538cd31d",
+    "name": "QA API Testing - Portfolio",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "35166165"
+  },
+  "item": [
+    {
+      "name": "API 1: Get All Products List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\npm.test(\"API-001 - HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"API-001 - Response code is 200\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"API-001 - Products list is not empty\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.products).to.be.an(\"array\");\r\n    pm.expect(response.products.length).to.be.above(0);\r\n});\r\n\r\npm.test(\"API-001 - Products have required fields\", function () {\r\n    const response = pm.response.json();\r\n\r\n    response.products.forEach(function (product) {\r\n        pm.expect(product).to.have.property(\"id\");\r\n        pm.expect(product).to.have.property(\"name\");\r\n        pm.expect(product).to.have.property(\"price\");\r\n        pm.expect(product).to.have.property(\"brand\");\r\n    });\r\n});\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/productsList",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "productsList"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "API 2: POST To All Products List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\npm.test(\"API-002 - HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"API-002 - POST method is not allowed\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.responseCode).to.eql(405);\r\n});\r\n\r\npm.test(\"API-002 - Error message is returned\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.message).to.be.a(\"string\");\r\n    pm.expect(response.message.toLowerCase()).to.include(\"not supported\");\r\n});\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/productsList",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "productsList"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "API 3: Get All Brands List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\npm.test(\"API-003 - HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"API-003 - Response code is 200\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"API-003 - Brands list is not empty\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.brands).to.be.an(\"array\");\r\n    pm.expect(response.brands.length).to.be.above(0);\r\n});\r\n\r\npm.test(\"API-003 - Brands have ID and name\", function () {\r\n    const response = pm.response.json();\r\n\r\n    response.brands.forEach(function (brand) {\r\n        pm.expect(brand).to.have.property(\"id\");\r\n        pm.expect(brand).to.have.property(\"brand\");\r\n    });\r\n});\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/brandsList",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "brandsList"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "API 4: PUT To All Brands List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\npm.test(\"API-004 - HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"API-004 - PUT method is not allowed\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.responseCode).to.eql(405);\r\n});\r\n\r\npm.test(\"API-004 - Error message is returned\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.message).to.be.a(\"string\");\r\n    pm.expect(response.message.toLowerCase())\r\n        .to.include(\"not supported\");\r\n});\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/brandsList",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "brandsList"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "API 5: POST To Search Product",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\npm.test(\"API-005 - HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"API-005 - Response code is 200\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"API-005 - Products list is not empty\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.products).to.be.an(\"array\");\r\n    pm.expect(response.products.length).to.be.above(0);\r\n});\r\n\r\npm.test(\"API-005 - Products match search term\", function () {\r\n    const response = pm.response.json();\r\n\r\n    response.products.forEach(function (product) {\r\n        pm.expect(product.name.toLowerCase()).to.include(\"top\");\r\n    });\r\n});\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "search_product",
+              "value": "top"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://automationexercise.com/api/searchProduct",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "searchProduct"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "API 6 - PATCH Update Post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\npm.test(\"PATCH - HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"PATCH - Title was updated\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.title)\r\n        .to.eql(\"Updated by QA Automation\");\r\n});\r\n\r\npm.test(\"PATCH - Post ID remains unchanged\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.id).to.eql(1);\r\n});\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Updated by QA Automation\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "API 7: DELETE METHOD To Delete User Account",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/deleteAccount?email= &password",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "deleteAccount"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": " "
+            },
+            {
+              "key": "password",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

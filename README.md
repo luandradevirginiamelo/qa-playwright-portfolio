@@ -199,3 +199,16 @@ Explore my QA Automation Portfolio:
 Software QA Engineer | QA Automation Engineer
 
 [GitHub Profile](https://github.com/luandradevirginiamelo)
+
+## Postman API Testing
+
+This portfolio also includes REST API testing with
+Postman and JavaScript assertions.
+
+The collection covers GET, POST, PUT, PATCH and DELETE
+requests, including positive and negative scenarios.
+
+The DELETE scenario is pending.
+
+See the [Postman API Testing project](postman/README.md)
+for test coverage and execution instructions.
