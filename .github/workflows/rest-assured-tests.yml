@@ -53,7 +53,7 @@ jobs:
         if: always()
         run: |
           npm install -g allure-commandline@2.29.0
-          allure generate target/allure-results --clean -o target/allure-report
+          allure generate allure-results --clean -o target/allure-report
 
       - name: Upload Allure HTML report
         if: always()
