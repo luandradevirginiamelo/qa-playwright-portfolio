@@ -1,4 +1,3 @@
-
 package qaportfolio.api;
 
 import io.restassured.response.Response;
@@ -10,20 +9,15 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SearchApiTest {
+public class GetAllProductsSuccessfully {
 
     @Test
-    void api005_searchProductsSuccessfully() {
+    void api001_getAllProductsSuccessfully() {
 
-        // ARRANGE - Define search term
-        String searchTerm = "top";
-
-        // ACT - Search for products
+        // ACT - Send GET request
         Response response = given()
-                .contentType("application/x-www-form-urlencoded")
-                .formParam("search_product", searchTerm)
                 .when()
-                .post("https://automationexercise.com/api/searchProduct");
+                .get("https://automationexercise.com/api/productsList");
 
         // ASSERT - Validate HTTP status
         assertEquals(200, response.statusCode());
@@ -31,14 +25,14 @@ public class SearchApiTest {
         // ASSERT - Validate API response code
         assertEquals(200, response.jsonPath().getInt("responseCode"));
 
-        // ASSERT - Validate products list
+        // ASSERT - Validate product list
         List<Map<String, Object>> products =
                 response.jsonPath().getList("products");
 
         assertNotNull(products);
         assertFalse(products.isEmpty());
 
-        // ASSERT - Validate product structure
+        // ASSERT - Validate required product fields
         for (Map<String, Object> product : products) {
             assertNotNull(product.get("id"));
             assertNotNull(product.get("name"));
@@ -46,9 +40,6 @@ public class SearchApiTest {
             assertNotNull(product.get("brand"));
         }
 
-        System.out.println(
-                "API-005 PASSED - Search returned "
-                + products.size() + " products!"
-        );
+        System.out.println("API-001 PASSED - Products retrieved successfully!");
     }
 }
