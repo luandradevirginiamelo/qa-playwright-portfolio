@@ -1,3 +1,4 @@
+
 package qaportfolio.api;
 
 import io.restassured.response.Response;
@@ -18,6 +19,17 @@ public class ProductsApiTest {
         Response response = given()
                 .when()
                 .get("https://automationexercise.com/api/productsList");
+
+        // DEBUG - Inspect API response in GitHub Actions
+        System.out.println("HTTP STATUS: " + response.statusCode());
+        System.out.println("CONTENT TYPE: " + response.contentType());
+
+        String responseBody = response.asString();
+
+        System.out.println(
+                "RESPONSE BODY: " +
+                responseBody.substring(0, Math.min(responseBody.length(), 500))
+        );
 
         // ASSERT - Validate HTTP status
         assertEquals(200, response.statusCode());
@@ -40,6 +52,8 @@ public class ProductsApiTest {
             assertNotNull(product.get("brand"));
         }
 
-        System.out.println("API-001 PASSED - Products retrieved successfully!");
+        System.out.println(
+                "API-001 PASSED - Products retrieved successfully!"
+        );
     }
 }
