@@ -1,4 +1,4 @@
-name: REST Assured API Tests
+﻿name: REST Assured API Tests
 
 on:
   push:
@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: rest-assured-allure-results
-          path: rest-assured/target/allure-results/
+          path: rest-assured/allure-results/
           if-no-files-found: warn
 
 
@@ -62,4 +62,5 @@ jobs:
           name: rest-assured-allure-html
           path: rest-assured/target/allure-report/
           if-no-files-found: warn
+
 
